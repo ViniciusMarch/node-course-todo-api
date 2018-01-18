@@ -22,7 +22,14 @@ app.post('/todos', (req, res) => {
   });
 });
 
-
+//resgatar e listar todos os TODOS
+app.get('/todos', (req, res) => {
+  Todo.find().then((todos) => {
+    res.send({todos}); //enviando nesse formato(objeto), é mais flexível
+  }, (e) => {
+    res.status(400).send(e);
+  })
+})
 
 app.listen(3000, () => {
   console.log('Started on port 3000');
